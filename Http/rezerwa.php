@@ -12,11 +12,16 @@ if($conn->connect_errno!=0)
 }
 else
 {
-	$film =$_POST['film'];
-	$data =$_POST['data'];
-	$miejsce =$_POST['miejsce'];
-	$sql="INSERT INTO rezerwacja (imie, nazwisko ,email ,data, film, miejsce) VALUES('$_SESSION['imie']','$_SESSION['nazwisko']','$_SESSION['emial']','$data','$film','$miejsce')";
-	mysqli_query($sql);
+	$imie= $_SESSION['imie'];
+	$nazwisko= $_SESSION['nazwisko'];
+	$emial= $_SESSION['emial'];
+	$film =$_POST["x1"];
+	$data =$_POST["x2"];
+	$miejsce =$_POST["x3"];
+	$sql="INSERT INTO `rezerwacja`(`imie`, `nazwisko`, `email`, `data`, `film`, `miejsce`) VALUES ('$imie','$nazwisko','$emial','$data','$film','$miejsce')";
+	mysqli_query($conn,$sql);
+	header('Location: rezerwacja.php'); 
+	
 }
 
 $conn->close();

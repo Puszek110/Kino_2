@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body style="background-color: red;">
+<body style="background-color: black;">
 <div class="container-fluid">
 
 <div class="row">
@@ -49,15 +49,84 @@ KINO BOLZGA<h1>
  
    </div>
   <div class="col" style="background-color:blue;">
+  <center>
+  <h1>FILMY TERAZ<h1>
   <?php
-  
+  $host = "localhost";
+	$db_user = "root";
+	$db_password = "";
+	$base = "kino";
+
+$conn =new mysqli($host,$db_user,$db_password,$base);
+$sql="SELECT * FROM `filmy`";
+	
+if($conn->connect_errno!=0)
+{
+	echo "Brak Połączenia";
+}
+else
+{
+echo<<<END
+	<table>
+	 <tr>
+      <td><img src="\img\OIP.jpg" alt="test" width="200" height="200"></td> <td><img src="\img\R.jpg" alt="R.jpg" width="200" height="200"></td> <td><img src="\img\lego.jpg" alt="test" width="200" height="200"></td>
+   </tr>
+END;
+	$result=$conn->query($sql);
+	echo '<tr>';
+	While($row = mysqli_fetch_assoc($result))
+	{
+	echo "<td>".$row['filmy']."</td>";
+	}
+	echo '</tr>';
+echo<<<ENDE
+	</table>
+ENDE;
+}
+			
+
   ?>
   </div>
    <div class="w-100"></div>
 <div class="col" style="background-color:green;"><h1>
-<?php 	
- 
-?>
+<center>
+<h1>FILMY W PRZYSZŁYM MIESIĄCU<h1>
+ <?php
+  $host = "localhost";
+	$db_user = "root";
+	$db_password = "";
+	$base = "kino";
+
+$conn =new mysqli($host,$db_user,$db_password,$base);
+$sql="SELECT * FROM `filmy_next`";
+	
+if($conn->connect_errno!=0)
+{
+	echo "Brak Połączenia";
+}
+else
+{
+echo<<<END
+	<table>
+	 <tr>
+      <td><img src="\img\batman.jpg" alt="test" width="200" height="200"></td> <td><img src="\img\kapitan.jpg" alt="R.jpg" width="200" height="200"></td> <td><img src="\img\pun.jpg" alt="test" width="200" height="200"></td>
+   </tr>
+END;
+	$result=$conn->query($sql);
+	echo '<tr>';
+	While($row = mysqli_fetch_assoc($result))
+	{
+	echo "<td>".$row['filmy']."</td>";
+	}
+	echo '</tr>';
+echo<<<ENDE
+	</table>
+ENDE;
+}
+			
+
+  ?>
+ </center>
 </div>
 <div class="w-100"></div>
 <div class="col" style="background-color:magenta;"><h1>

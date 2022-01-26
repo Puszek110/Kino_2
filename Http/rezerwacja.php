@@ -26,19 +26,19 @@ KINO BOLZGA<h1>
   <div class="form-group row">
         <label for="inputUser" class="col-sm-2 col-form-label">Film</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputUser" name="film" placeholder="Tytuł">
+          <input type="text" class="form-control" id="inputUser" name="x1" placeholder="Tytuł">
         </div>
       </div>
       <div class="form-group row">
         <label for="inputPassword3" class="col-sm-2 col-form-label">Data</label>
         <div class="col-sm-10">
-          <input type="tekst" class="form-control" id="inputUser" name="data" placeholder="Termin">
+          <input type="tekst" class="form-control" id="inputUser" name="x2" placeholder="Termin">
         </div>
       </div>
 	 <div class="form-group row">
         <label for="inputUser" class="col-sm-2 col-form-label">Miejsce</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputUser" name="miejsce" placeholder="miejsce">
+          <input type="text" class="form-control" id="inputUser" name="x3" placeholder="miejsce">
         </div>
       </div>
       <div class="form-group row">
@@ -48,19 +48,86 @@ KINO BOLZGA<h1>
       </div>
     </form>
    </div>
-  <div class="col" style="background-color:blue;">.col-sm-8</div>
+  <div class="col" style="background-color:blue;">
+  <center>
+  <h1> FILMY TERAZ <h1>
+   <?php
+  $host = "localhost";
+	$db_user = "root";
+	$db_password = "";
+	$base = "kino";
+
+$conn =new mysqli($host,$db_user,$db_password,$base);
+$sql="SELECT * FROM `filmy`";
+	
+if($conn->connect_errno!=0)
+{
+	echo "Brak Połączenia";
+}
+else
+{
+echo<<<END
+	<table>
+	 <tr>
+      <td><img src="\img\OIP.jpg" alt="test" width="200" height="200"></td> <td><img src="\img\R.jpg" alt="R.jpg" width="200" height="200"></td> <td><img src="\img\lego.jpg" alt="test" width="200" height="200"></td>
+   </tr>
+END;
+	$result=$conn->query($sql);
+	echo '<tr>';
+	While($row = mysqli_fetch_assoc($result))
+	{
+	echo "<td>".$row['filmy']."</td>";
+	}
+	echo '</tr>';
+echo<<<ENDE
+	</table>
+ENDE;
+}
+			
+
+  ?>
+  </center>
+  
+  </div>
    <div class="w-100"></div>
 <div class="col" style="background-color:green;"><h1>
 <center>
-<h1>TEST PHP<h1>
-<?php 	
-session_start();
- echo $_SESSION["nazwisko"];
- echo "            ";
- echo $_SESSION["imie"];
-  echo "            ";
- echo $_SESSION['emial'];
-?><h1>
+<h1>FILMY W PRZYSZŁYM MIESIĄCU<h1>
+ <?php
+  $host = "localhost";
+	$db_user = "root";
+	$db_password = "";
+	$base = "kino";
+
+$conn =new mysqli($host,$db_user,$db_password,$base);
+$sql="SELECT * FROM `filmy_next`";
+	
+if($conn->connect_errno!=0)
+{
+	echo "Brak Połączenia";
+}
+else
+{
+echo<<<END
+	<table>
+	 <tr>
+      <td><img src="\img\batman.jpg" alt="test" width="200" height="200"></td> <td><img src="\img\kapitan.jpg" alt="R.jpg" width="200" height="200"></td> <td><img src="\img\pun.jpg" alt="test" width="200" height="200"></td>
+   </tr>
+END;
+	$result=$conn->query($sql);
+	echo '<tr>';
+	While($row = mysqli_fetch_assoc($result))
+	{
+	echo "<td>".$row['filmy']."</td>";
+	}
+	echo '</tr>';
+echo<<<ENDE
+	</table>
+ENDE;
+}
+			
+
+  ?>
 </center>
 </div>
 <div class="w-100"></div>
